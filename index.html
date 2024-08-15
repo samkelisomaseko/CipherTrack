@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CipherTrack - Phone Tracker</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>CipherTrack</h1>
+    </header>
+
+    <main>
+        <section id="input-section">
+            <h2>Enter Phone Details</h2>
+            <form id="phone-details-form">
+                <label for="model">Model:</label>
+                <input type="text" id="model" name="model" required>
+
+                <label for="serial-number">Serial Number:</label>
+                <input type="text" id="serial-number" name="serial-number" required>
+
+                <label for="imeisv">IMEISV:</label>
+                <input type="text" id="imeisv" name="imeisv" required>
+
+                <label for="ip-address">IP Address:</label>
+                <input type="text" id="ip-address" name="ip-address" required>
+                
+                <button type="submit">Track Phone</button>
+            </form>
+        </section>
+
+        <section id="details-table-section" style="display:none;">
+            <h2>Phone Details</h2>
+            <table id="details-table">
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Details will be dynamically populated here -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="results-section">
+            <h2>Tracking Results</h2>
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Results will be dynamically populated here -->
+                </tbody>
+            </table>
+            <button id="download-pdf">Download PDF</button>
+        </section>
+    </main>
+
+    <footer>
+        <nav>
+            <a href="#home" id="home-button">Home</a>
+            <a href="#about" id="about-button">About</a>
+            <a href="#" id="share-button">Share</a>
+        </nav>
+    </footer>
+
+    <div id="about-popup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <h2>About CipherTrack</h2>
+            <p>
+                CipherTrack is a state-of-the-art phone tracking application designed to help you locate your phone 
+                even if it is stolen. The application allows you to input critical phone details and offers the 
+                functionality to track your phone's location, active SIM card, and more. With a futuristic design and 
+                responsive layout, CipherTrack ensures a seamless user experience across all devices.
+            </p>
+            <button id="close-popup">Cancel</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+    <script src="scripts/script.js"></script>
+     <script src="scripts/server.js"></script>
+</body>
+</html>
