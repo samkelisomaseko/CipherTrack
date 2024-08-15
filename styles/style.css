@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1b2735, #090a0f);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px) saturate(180%);
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: font-size 0.3s ease;
+    margin: 20px auto;
+    width: calc(100% - 40px);
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+input {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px) saturate(180%);
+    color: #ffffff;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+input::placeholder {
+    color: #b3b3b3;
+}
+
+button {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px) saturate(180%);
+    color: #ffffff;
+    cursor: pointer;
+    grid-column: span 2;
+    font-family: 'Orbitron', sans-serif;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px) saturate(180%);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+th {
+    font-family: 'Orbitron', sans-serif;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+td {
+    font-family: 'Roboto', sans-serif;
+}
+
+#download-pdf {
+    margin-top: 20px;
+    grid-column: span 2;
+}
+
+footer {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px) saturate(180%);
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 40px);
+    margin: 20px auto;
+}
+
+footer nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px) saturate(180%);
+    border-radius: 10px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+footer nav a:hover {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px) saturate(180%);
+    padding: 30px;
+    border-radius: 15px;
+    position: relative;
+    max-width: 500px;
+    color: #ffffff;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+#close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    button {
+        grid-column: span 1;
+    }
+
+    header {
+        font-size: 1.5em;
+    }
+
+    table {
+        font-size: 0.9em;
+    }
+}
