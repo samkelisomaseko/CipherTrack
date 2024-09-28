@@ -163,6 +163,84 @@
       50% { transform: scale(1); opacity: 1; }
       100% { transform: scale(0.8); opacity: 0.5; }
     }
+(function() {
+  // Create style element for spinner
+  var style = document.createElement('style');
+  style.textContent = `
+    .autotrends-spinner-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgba(15, 15, 26, 0.9);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .autotrends-spinner-container.show {
+      opacity: 1;
+    }
+    .autotrends-spinner {
+      position: relative;
+      width: 150px;
+      height: 150px;
+    }
+    .autotrends-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 4px solid transparent;
+    }
+    .autotrends-outer-ring {
+      width: 100%;
+      height: 100%;
+      border-top-color: #3498db;
+      border-left-color: #3498db;
+      animation: autotrends-spin 2s linear infinite;
+    }
+    .autotrends-inner-ring {
+      width: 80%;
+      height: 80%;
+      top: 10%;
+      left: 10%;
+      border-bottom-color: #e74c3c;
+      border-right-color: #e74c3c;
+      animation: autotrends-spin 1.5s linear reverse infinite;
+    }
+    .autotrends-pulse {
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      top: 20%;
+      left: 20%;
+      background-color: rgba(52, 152, 219, 0.1);
+      border-radius: 50%;
+      animation: autotrends-pulse 1.5s ease-in-out infinite;
+    }
+    .autotrends-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    @keyframes autotrends-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes autotrends-pulse {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      50% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.8); opacity: 0.5; }
+    }
   `;
   document.head.appendChild(style);
 
@@ -174,37 +252,58 @@
       <div class="autotrends-ring autotrends-outer-ring"></div>
       <div class="autotrends-ring autotrends-inner-ring"></div>
       <div class="autotrends-pulse"></div>
-      <div class="autotrends-text">CipherTrack</div>
+      <div class="autotrends-text">AutoTrends</div>
     </div>
   `;
 
+  // Variable to track if the spinner is currently visible
+  var isSpinnerVisible = false;
+
   // Function to show spinner
   window.showAutoTrendsSpinner = function() {
-    document.body.appendChild(container);
+    if (!isSpinnerVisible) {
+      document.body.appendChild(container);
+      // Use setTimeout to ensure the transition is applied
+      setTimeout(() => {
+        container.classList.add('show');
+      }, 10);
+      isSpinnerVisible = true;
+    }
   };
 
   // Function to hide spinner
   window.hideAutoTrendsSpinner = function() {
-    if (container.parentNode) {
-      container.parentNode.removeChild(container);
+    if (isSpinnerVisible) {
+      container.classList.remove('show');
+      // Wait for the transition to complete before removing the element
+      setTimeout(() => {
+        if (container.parentNode) {
+          container.parentNode.removeChild(container);
+        }
+        isSpinnerVisible = false;
+      }, 300); // Match this with the transition duration in CSS
     }
   };
 
-  // Automatically show the spinner when the page is loading
-  window.addEventListener('load', function() {
+  // Show spinner when navigation starts
+  window.addEventListener('beforeunload', showAutoTrendsSpinner);
+
+  // Show spinner when the page starts loading
+  if (document.readyState === 'loading') {
     showAutoTrendsSpinner();
-  });
+  }
 
-  // Automatically hide the spinner once the page has fully loaded
-  window.addEventListener('DOMContentLoaded', function() {
-    hideAutoTrendsSpinner();
-  });
+  // Hide spinner when the page has fully loaded
+  window.addEventListener('load', hideAutoTrendsSpinner);
 
-  // Make sure to hide the spinner if the page is being unloaded (e.g., navigating to another page)
-  window.addEventListener('beforeunload', function() {
-    showAutoTrendsSpinner();
-  });
-
+  // Expose a method to manually control the spinner
+  window.toggleAutoTrendsSpinner = function(show) {
+    if (show) {
+      showAutoTrendsSpinner();
+    } else {
+      hideAutoTrendsSpinner();
+    }
+  };
 })();
 </script>
 
